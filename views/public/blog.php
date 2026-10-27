@@ -61,18 +61,20 @@ try {
                     }
                     ?>
                     <div class="col-md-6 col-lg-4">
-                        <div class="card h-100 border-0 shadow-sm rounded-1 overflow-hidden group blog-card">
-                            <div class="position-relative overflow-hidden" style="height: 200px;">
-                                <img src="<?= htmlspecialchars($imageSrc) ?>" class="img-fluid w-100 h-100 object-fit-cover" alt="<?= htmlspecialchars($post['title']) ?>" style="transition: transform 0.5s ease;" onerror="this.src='<?= htmlspecialchars($defaultPostImage) ?>'">
-                                <span class="badge bg-gold text-primary-law position-absolute top-0 start-0 m-3 p-2 rounded-0 shadow-sm fw-bold"><?= htmlspecialchars($post['category']) ?></span>
+                        <a href="index.php?page=article&id=<?= (int) $post['id'] ?>" class="text-decoration-none d-block h-100">
+                            <div class="card h-100 border-0 shadow-sm rounded-1 overflow-hidden blog-card" style="transition: transform 0.3s ease, box-shadow 0.3s ease;">
+                                <div class="position-relative overflow-hidden" style="height: 200px;">
+                                    <img src="<?= htmlspecialchars($imageSrc) ?>" class="img-fluid w-100 h-100 object-fit-cover" alt="<?= htmlspecialchars($post['title']) ?>" style="transition: transform 0.5s ease;" onerror="this.src='<?= htmlspecialchars($defaultPostImage) ?>'">
+                                    <span class="badge bg-gold text-primary-law position-absolute top-0 start-0 m-3 p-2 rounded-0 shadow-sm fw-bold"><?= htmlspecialchars($post['category']) ?></span>
+                                </div>
+                                <div class="card-body p-4 d-flex flex-column">
+                                    <div class="small text-muted fw-bold mb-2 text-uppercase letter-spacing-1"><i class="far fa-calendar-alt me-2 text-gold"></i><?= date('M d, Y', strtotime($post['created_at'])) ?></div>
+                                    <h4 class="card-title fw-bold mb-3 text-primary-law"><?= htmlspecialchars($post['title']) ?></h4>
+                                    <p class="card-text text-muted small flex-grow-1"><?= htmlspecialchars($excerpt) ?></p>
+                                    <span class="text-primary-law fw-bold border-top pt-3 mt-2 d-inline-block read-more">Read Article <i class="fas fa-arrow-right ms-1 fs-6"></i></span>
+                                </div>
                             </div>
-                            <div class="card-body p-4 d-flex flex-column">
-                                <div class="small text-muted fw-bold mb-2 text-uppercase letter-spacing-1"><i class="far fa-calendar-alt me-2 text-gold"></i><?= date('M d, Y', strtotime($post['created_at'])) ?></div>
-                                <h4 class="card-title fw-bold mb-3"><a href="index.php?page=article&id=<?= (int) $post['id'] ?>" class="text-primary-law text-decoration-none"><?= htmlspecialchars($post['title']) ?></a></h4>
-                                <p class="card-text text-muted small flex-grow-1"><?= htmlspecialchars($excerpt) ?></p>
-                                <a href="index.php?page=article&id=<?= (int) $post['id'] ?>" class="text-primary-law fw-bold text-decoration-none border-top pt-3 mt-2 d-inline-block read-more">Read Article <i class="fas fa-arrow-right ms-1 fs-6"></i></a>
-                            </div>
-                        </div>
+                        </a>
                     </div>
                 <?php endforeach; ?>
             </div>
@@ -80,5 +82,29 @@ try {
     </div>
 </section>
 <style>
-    .blog-card:hover img { transform: scale(1.05); }
+    .blog-card {
+        cursor: pointer;
+    }
+    
+    .blog-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.15) !important;
+    }
+    
+    .blog-card:hover img {
+        transform: scale(1.05);
+    }
+    
+    .blog-card .read-more {
+        transition: padding-left 0.3s ease;
+    }
+    
+    .blog-card:hover .read-more {
+        padding-left: 8px;
+    }
+    
+    .blog-card:hover .read-more i {
+        transform: translateX(4px);
+        transition: transform 0.3s ease;
+    }
 </style>

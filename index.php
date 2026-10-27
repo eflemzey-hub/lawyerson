@@ -707,6 +707,9 @@ if ($page === 'about') {
 } elseif ($page === 'attorneys') {
     $pageTitle = "Our Attorneys | " . $siteName;
     require_once 'views/public/attorneys.php';
+} elseif ($page === 'attorney') {
+    $pageTitle = "Attorney Profile | " . $siteName;
+    require_once 'views/public/attorney.php';
 } elseif ($page === 'consultation') {
     $pageTitle = "Book a Consultation | " . $siteName;
     require_once 'views/public/consultation.php';
@@ -728,6 +731,9 @@ if ($page === 'about') {
 } elseif ($page === 'admin_attorneys') {
     $pageTitle = "Manage Attorneys | Admin";
     require_once 'views/admin/attorneys.php';
+} elseif ($page === 'admin_testimonials') {
+    $pageTitle = "Manage Testimonials | Admin";
+    require_once 'views/admin/testimonials.php';
 } elseif ($page === 'admin_blog') {
     $pageTitle = "Blog Posts | Admin";
     require_once 'views/admin/blog.php';

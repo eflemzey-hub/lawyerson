@@ -18,6 +18,14 @@
         }
     } catch (Exception $e) {}
     
+    // Debug: Check if attorneys have IDs
+    if (!empty($attorneysList)) {
+        error_log("Attorneys fetched: " . count($attorneysList));
+        foreach ($attorneysList as $atty) {
+            error_log("Attorney: " . ($atty['name'] ?? 'N/A') . " - ID: " . ($atty['id'] ?? 'NO ID'));
+        }
+    }
+    
     if (empty($attorneysList)) {
         $attorneysList = [
             ['name' => 'Jonathan Doe', 'position' => 'Senior Partner', 'bio' => 'Expert in corporate law with over 20 years of experience.', 'image_url' => 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=400'],
@@ -27,6 +35,19 @@
         ];
     }
     ?>
+    
+    <!-- Debug Output (temporary) -->
+    <?php if (!empty($attorneysList) && isset($attorneysList[0])): ?>
+        <div class="container mb-4">
+            <div class="alert alert-info">
+                <strong>Debug Info:</strong><br>
+                First Attorney ID: <?= isset($attorneysList[0]['id']) ? $attorneysList[0]['id'] : 'NO ID' ?><br>
+                First Attorney Name: <?= htmlspecialchars($attorneysList[0]['name'] ?? 'N/A') ?><br>
+                Link URL: <code>index.php?page=attorney&amp;id=<?= $attorneysList[0]['id'] ?? 'NO_ID' ?></code>
+            </div>
+        </div>
+    <?php endif; ?>
+    
     <div class="container">
         <div class="row g-5">
             <?php foreach($attorneysList as $attorney): ?>

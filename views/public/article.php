@@ -37,9 +37,79 @@ $featuredImage = resolve_post_image_url($article['image_url'] ?? '', $defaultPos
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-8">
+<section class="section-padding bg-white pt-2">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
                 <div class="article-content fs-5 text-muted" style="line-height: 1.8;">
-                    <?= nl2br(htmlspecialchars($article['content'])) ?>
+                    <?= $article['content'] ?>
                 </div>
+
+                <style>
+                    .article-content h2 {
+                        color: #0b1b3d;
+                        font-weight: 700;
+                        font-size: 1.75rem;
+                        margin-top: 2.5rem;
+                        margin-bottom: 1.25rem;
+                        padding-bottom: 0.5rem;
+                        border-bottom: 2px solid #c5a572;
+                    }
+                    
+                    .article-content h3 {
+                        color: #0b1b3d;
+                        font-weight: 600;
+                        font-size: 1.4rem;
+                        margin-top: 2rem;
+                        margin-bottom: 1rem;
+                    }
+                    
+                    .article-content p {
+                        margin-bottom: 1.25rem;
+                        text-align: justify;
+                    }
+                    
+                    .article-content ul,
+                    .article-content ol {
+                        margin-bottom: 1.5rem;
+                        padding-left: 2rem;
+                    }
+                    
+                    .article-content li {
+                        margin-bottom: 0.75rem;
+                        line-height: 1.8;
+                    }
+                    
+                    .article-content strong {
+                        color: #0b1b3d;
+                        font-weight: 600;
+                    }
+                    
+                    .article-content a {
+                        color: #c5a572;
+                        text-decoration: underline;
+                    }
+                    
+                    .article-content a:hover {
+                        color: #0b1b3d;
+                    }
+                    
+                    .article-content blockquote {
+                        border-left: 4px solid #c5a572;
+                        padding-left: 1.5rem;
+                        margin: 2rem 0;
+                        font-style: italic;
+                        color: #555;
+                    }
+                    
+                    .article-content code {
+                        background-color: #f5f5f5;
+                        padding: 0.2rem 0.4rem;
+                        border-radius: 3px;
+                        font-size: 0.9em;
+                        color: #c5a572;
+                    }
+                </style>
 
                 <hr class="my-5 opacity-25">
 

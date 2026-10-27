@@ -87,4 +87,42 @@ class Post {
         $stmt = $this->pdo->prepare("DELETE FROM posts WHERE id = ?");
         return $stmt->execute([(int) $id]);
     }
+
+    public function getRelatedArticles($currentId, $category, $limit = 3) {
+        if (!$this->pdo) return [];
+        
+        // First, try to get articles from the same category
+        $stmt = $this->pdo->prepare("
+            SELECT * FROM posts 
+            WHERE id != ? 
+            AND category = ? 
+            AND status = 'published' 
+            ORDER BY created_at DESC 
+            LIMIT ?
+        ");
+        $stmt->execute([(int) $currentId, $category, (int) $limit]);
+        $relatedPosts = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+        // If we don't have enough articles from the same category, fill with recent posts
+        if (count($relatedPosts) < $limit) {
+            $remaining = $limit - count($relatedPosts);
+            $excludeIds = array_merge([(int) $currentId], array_column($relatedPosts, 'id'));
+            $placeholders = implode(',', array_fill(0, count($excludeIds), '?'));
+            
+            $stmt = $this->pdo->prepare("
+                SELECT * FROM posts 
+                WHERE id NOT IN ($placeholders) 
+                AND status = 'published' 
+                ORDER BY created_at DESC 
+                LIMIT ?
+            ");
+            $params = array_merge($excludeIds, [(int) $remaining]);
+            $stmt->execute($params);
+            $additionalPosts = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            
+            $relatedPosts = array_merge($relatedPosts, $additionalPosts);
+        }
+        
+        return $relatedPosts;
+    }
 }

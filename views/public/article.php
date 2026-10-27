@@ -15,6 +15,14 @@ if (!$article) {
 }
 
 $featuredImage = resolve_post_image_url($article['image_url'] ?? '', $defaultPostImage);
+
+// Fetch related articles
+$relatedArticles = [];
+try {
+    if (isset($postModel)) {
+        $relatedArticles = $postModel->getRelatedArticles($articleId, $article['category'] ?? '', 3);
+    }
+} catch (Exception $e) {}
 ?>
 
 <section class="bg-law-bg py-5">
@@ -152,6 +160,92 @@ $featuredImage = resolve_post_image_url($article['image_url'] ?? '', $defaultPos
         </div>
     </div>
 </section>
+
+<?php if (!empty($relatedArticles)): ?>
+<section class="section-padding bg-law-bg">
+    <div class="container-fluid px-lg-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-10 col-xl-9">
+                <div class="text-center mb-5">
+                    <h2 class="display-6 fw-bold text-primary-law mb-2">Related Articles</h2>
+                    <p class="text-muted">Continue exploring legal insights on related topics</p>
+                </div>
+                
+                <div class="row g-4">
+                    <?php foreach ($relatedArticles as $relatedPost): ?>
+                        <?php
+                        $relatedImage = resolve_post_image_url($relatedPost['image_url'] ?? '', $defaultPostImage);
+                        $relatedExcerpt = strip_tags($relatedPost['content'] ?? '');
+                        if (strlen($relatedExcerpt) > 120) {
+                            $relatedExcerpt = substr($relatedExcerpt, 0, 120) . '...';
+                        }
+                        ?>
+                        <div class="col-md-4">
+                            <a href="index.php?page=article&id=<?= (int) $relatedPost['id'] ?>" class="text-decoration-none d-block h-100">
+                                <div class="card h-100 border-0 shadow-sm rounded-1 overflow-hidden related-article-card" style="transition: transform 0.3s ease, box-shadow 0.3s ease;">
+                                    <div class="position-relative overflow-hidden" style="height: 180px;">
+                                        <img src="<?= htmlspecialchars($relatedImage) ?>" 
+                                             class="img-fluid w-100 h-100 object-fit-cover" 
+                                             alt="<?= htmlspecialchars($relatedPost['title']) ?>" 
+                                             style="transition: transform 0.5s ease;" 
+                                             onerror="this.src='<?= htmlspecialchars($defaultPostImage) ?>'">
+                                        <span class="badge bg-gold text-primary-law position-absolute top-0 start-0 m-2 px-2 py-1 rounded-0 shadow-sm fw-bold small">
+                                            <?= htmlspecialchars($relatedPost['category']) ?>
+                                        </span>
+                                    </div>
+                                    <div class="card-body p-3 d-flex flex-column">
+                                        <div class="small text-muted fw-bold mb-2 text-uppercase" style="font-size: 0.75rem; letter-spacing: 0.5px;">
+                                            <i class="far fa-calendar-alt me-1 text-gold"></i>
+                                            <?= date('M d, Y', strtotime($relatedPost['created_at'])) ?>
+                                        </div>
+                                        <h5 class="card-title fw-bold mb-2 text-primary-law" style="font-size: 1rem; line-height: 1.4;">
+                                            <?= htmlspecialchars($relatedPost['title']) ?>
+                                        </h5>
+                                        <p class="card-text text-muted flex-grow-1" style="font-size: 0.875rem;">
+                                            <?= htmlspecialchars($relatedExcerpt) ?>
+                                        </p>
+                                        <span class="text-primary-law fw-bold d-inline-block mt-2 read-more-link" style="font-size: 0.875rem;">
+                                            Read More <i class="fas fa-arrow-right ms-1"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .related-article-card {
+        cursor: pointer;
+    }
+    
+    .related-article-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 0.75rem 2rem rgba(0, 0, 0, 0.15) !important;
+    }
+    
+    .related-article-card:hover img {
+        transform: scale(1.1);
+    }
+    
+    .related-article-card .read-more-link {
+        transition: padding-left 0.3s ease;
+    }
+    
+    .related-article-card:hover .read-more-link {
+        padding-left: 6px;
+    }
+    
+    .related-article-card:hover .read-more-link i {
+        transform: translateX(4px);
+        transition: transform 0.3s ease;
+    }
+</style>
+<?php endif; ?>
 
 <section class="py-5 bg-primary-law text-white text-center">
     <div class="container py-3">

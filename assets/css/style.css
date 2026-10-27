@@ -327,6 +327,15 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
   transform: translateY(0);
 }
 
+/* Homepage Attorney Cards */
+.home-attorney-card {
+  cursor: pointer;
+}
+
+.home-attorney-card:hover {
+  transform: translateY(-8px);
+}
+
 /* Testimonials */
 .testimonial-card {
   box-shadow: 0 5px 15px rgba(0,0,0,0.05);

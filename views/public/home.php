@@ -219,17 +219,27 @@
         <div class="row g-4">
             <?php foreach($homeAttorneys as $attorney): ?>
             <div class="col-md-6 col-lg-3">
-                <div class="team-card text-center group">
-                    <div class="overflow-hidden position-relative mb-4 team-img-wrapper">
-                        <img src="<?= htmlspecialchars($attorney['image_url']) ?>" alt="<?= htmlspecialchars($attorney['name']) ?>" class="img-fluid w-100" style="height: 350px; object-fit: cover;">
-                        <div class="team-social position-absolute bottom-0 w-100 p-3 d-flex justify-content-center gap-2">
-                            <a href="<?= htmlspecialchars($attorney['linkedin'] ?? '#') ?>" class="btn btn-gold btn-sm rounded-circle"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="<?= htmlspecialchars($attorney['twitter'] ?? '#') ?>" class="btn btn-gold btn-sm rounded-circle"><i class="fab fa-twitter"></i></a>
+                <a href="index.php?page=attorney&id=<?= $attorney['id'] ?>" class="text-decoration-none d-block">
+                    <div class="team-card text-center group home-attorney-card" style="transition: transform 0.3s ease;">
+                        <div class="overflow-hidden position-relative mb-4 team-img-wrapper">
+                            <img src="<?= htmlspecialchars($attorney['image_url']) ?>" 
+                                 alt="<?= htmlspecialchars($attorney['name']) ?>" 
+                                 class="img-fluid w-100" 
+                                 style="height: 350px; object-fit: cover;">
+                            <div class="team-social position-absolute bottom-0 w-100 p-3 d-flex justify-content-center gap-2">
+                                <?php if($attorney['linkedin']): ?>
+                                    <span class="btn btn-gold btn-sm rounded-circle"><i class="fab fa-linkedin-in"></i></span>
+                                <?php endif; ?>
+                                <?php if($attorney['twitter']): ?>
+                                    <span class="btn btn-gold btn-sm rounded-circle"><i class="fab fa-twitter"></i></span>
+                                <?php endif; ?>
+                            </div>
                         </div>
+                        <h4 class="mb-1 text-primary-law"><?= htmlspecialchars($attorney['name']) ?></h4>
+                        <p class="text-gold fw-medium mb-2"><?= htmlspecialchars($attorney['position']) ?></p>
+                        <small class="text-muted d-block">Click to view profile</small>
                     </div>
-                    <h4 class="mb-1"><?= htmlspecialchars($attorney['name']) ?></h4>
-                    <p class="text-gold fw-medium mb-0"><?= htmlspecialchars($attorney['position']) ?></p>
-                </div>
+                </a>
             </div>
             <?php endforeach; ?>
         </div>

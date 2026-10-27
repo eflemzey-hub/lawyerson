@@ -17,7 +17,8 @@ try {
 } catch (Exception $e) {}
 ?>
 <!-- Hero -->
-<section class="hero position-relative bg-primary-law text-white py-5" style="background: linear-gradient(rgba(11, 27, 61, 0.9), rgba(11, 27, 61, 0.9)), url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=2000') no-repeat center center/cover;">
+<section class="hero position-relative text-white py-5" style="overflow: hidden;">
+    <div class="hero-bg-animated" style="background-image: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=2000');"></div>
     <div class="container text-center py-5">
         <h1 class="display-4 fw-bold mb-3 text-white">Legal Insights</h1>
         <p class="lead opacity-75 mx-auto" style="max-width: 600px; font-weight: 300;">Stay informed with the latest legal news, expert analysis, and practical guidance from our attorneys.</p>

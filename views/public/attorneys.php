@@ -1,6 +1,7 @@
 <!-- Hero Section -->
 <?php $attorneysBg = $settingModel->get('attorneys_hero_bg', 'https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&q=80&w=2000'); ?>
-<section class="hero position-relative bg-primary-law text-white d-flex align-items-center" style="min-height: 50vh; background: linear-gradient(rgba(11, 27, 61, 0.85), rgba(11, 27, 61, 0.95)), url('<?= htmlspecialchars($attorneysBg) ?>') no-repeat center center/cover;">
+<section class="hero position-relative text-white d-flex align-items-center" style="min-height: 50vh; overflow: hidden;">
+    <div class="hero-bg-animated" style="background-image: url('<?= htmlspecialchars($attorneysBg) ?>');"></div>
     <div class="container text-center">
         <h1 class="display-4 fw-bold mb-3 text-white">Our Attorneys</h1>
         <p class="lead opacity-75 mx-auto" style="max-width: 600px;">Meet our dedicated team of legal professionals committed to fighting for your rights.</p>

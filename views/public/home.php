@@ -1,6 +1,7 @@
 <!-- Hero Section -->
 <?php $homeBg = $settingModel->get('home_hero_bg', 'https://images.unsplash.com/photo-1589829085413-56de8ae18c73?auto=format&fit=crop&q=80&w=2000'); ?>
-<section class="hero position-relative bg-primary-law text-white d-flex align-items-center" style="min-height: 80vh; background: linear-gradient(rgba(11, 27, 61, 0.85), rgba(11, 27, 61, 0.95)), url('<?= htmlspecialchars($homeBg) ?>') no-repeat center center/cover;">
+<section class="hero position-relative text-white d-flex align-items-center" style="min-height: 80vh; overflow: hidden;">
+    <div class="hero-bg-animated" style="background-image: url('<?= htmlspecialchars($homeBg) ?>');"></div>
     <div class="container position-relative z-1">
         <div class="row align-items-center">
             <div class="col-lg-8 col-xl-7 py-5">

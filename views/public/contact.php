@@ -1,6 +1,7 @@
 <!-- Hero Section -->
 <?php $contactBg = $settingModel->get('contact_hero_bg', 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=2000'); ?>
-<section class="hero position-relative bg-primary-law text-white py-5" style="background: linear-gradient(rgba(11, 27, 61, 0.9), rgba(11, 27, 61, 0.9)), url('<?= htmlspecialchars($contactBg) ?>') no-repeat center center/cover;">
+<section class="hero position-relative text-white py-5" style="overflow: hidden;">
+    <div class="hero-bg-animated" style="background-image: url('<?= htmlspecialchars($contactBg) ?>');"></div>
     <div class="container text-center py-5 mt-5">
         <h1 class="display-4 fw-bold mb-3 text-white">Contact Us</h1>
         <p class="lead opacity-75 mx-auto" style="max-width: 600px; font-weight: 300;">Reach out to our team of legal experts. We are here to answer your questions and provide the guidance you need.</p>

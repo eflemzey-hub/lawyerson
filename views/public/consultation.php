@@ -1,5 +1,6 @@
 <!-- Hero -->
-<section class="hero position-relative bg-primary-law text-white py-5">
+<section class="hero position-relative text-white py-5" style="overflow: hidden;">
+    <div class="hero-bg-animated" style="background: linear-gradient(135deg, #0B1B3D 0%, #1a2f5c 100%);"></div>
     <div class="container text-center py-5">
         <h1 class="display-4 fw-bold mb-3 text-white">Book a Consultation</h1>
         <p class="lead opacity-75 mx-auto" style="max-width: 600px; font-weight: 300;">Take the first step towards resolving your legal matters. Schedule a confidential consultation with our experts.</p>

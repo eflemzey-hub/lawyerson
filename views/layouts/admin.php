@@ -298,6 +298,9 @@
                 <a href="index.php?page=admin_attorneys" class="nav-link-modern <?= (isset($_GET['page']) && $_GET['page'] == 'admin_attorneys') ? 'active' : '' ?>">
                     <i class="fas fa-user-tie"></i> Attorneys
                 </a>
+                <a href="index.php?page=admin_testimonials" class="nav-link-modern <?= (isset($_GET['page']) && $_GET['page'] == 'admin_testimonials') ? 'active' : '' ?>">
+                    <i class="fas fa-star"></i> Testimonials
+                </a>
                 <a href="index.php?page=admin_media" class="nav-link-modern <?= (isset($_GET['page']) && $_GET['page'] == 'admin_media') ? 'active' : '' ?>">
                     <i class="fas fa-image"></i> Media
                 </a>

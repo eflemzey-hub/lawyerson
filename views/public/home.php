@@ -510,17 +510,35 @@
         <div class="row g-4">
             <?php foreach($homePosts as $post): ?>
             <div class="col-md-6 col-lg-4">
-                <div class="card border-0 shadow-sm h-100 blog-card">
-                    <?php $homeImage = resolve_post_image_url($post['image_url'] ?? '', $homeDefaultImage); ?>
-                    <img src="<?= htmlspecialchars($homeImage) ?>" class="card-img-top rounded-0" alt="<?= htmlspecialchars($post['title']) ?>" style="height: 250px; object-fit: cover;" onerror="this.src='<?= htmlspecialchars($homeDefaultImage) ?>'">
-                    <div class="card-body p-4 position-relative d-flex flex-column">
-                        <div class="bg-gold text-primary-law position-absolute top-0 translate-middle-y px-3 py-1 fw-bold text-uppercase" style="font-size: 0.8rem;"><?= htmlspecialchars($post['category']) ?></div>
-                        <div class="text-muted small mb-2 mt-2"><i class="far fa-calendar-alt me-2"></i> <?= date('M d, Y', strtotime($post['created_at'])) ?></div>
-                        <h5 class="card-title fw-bold mb-3"><a href="index.php?page=article&id=<?= $post['id'] ?>" class="text-primary-law text-decoration-none"><?= htmlspecialchars($post['title']) ?></a></h5>
-                        <p class="card-text text-muted mb-4 flex-grow-1"><?= htmlspecialchars(substr(strip_tags($post['content']), 0, 120)) ?>...</p>
-                        <a href="index.php?page=article&id=<?= $post['id'] ?>" class="text-gold fw-bold text-decoration-none read-more mt-auto">Read Article <i class="fas fa-arrow-right ms-1"></i></a>
+                <a href="index.php?page=article&id=<?= $post['id'] ?>" class="text-decoration-none d-block h-100">
+                    <div class="card border-0 shadow-sm h-100 blog-card home-blog-card" style="transition: transform 0.3s ease, box-shadow 0.3s ease;">
+                        <?php $homeImage = resolve_post_image_url($post['image_url'] ?? '', $homeDefaultImage); ?>
+                        <div class="position-relative overflow-hidden">
+                            <img src="<?= htmlspecialchars($homeImage) ?>" 
+                                 class="card-img-top rounded-0" 
+                                 alt="<?= htmlspecialchars($post['title']) ?>" 
+                                 style="height: 250px; object-fit: cover; transition: transform 0.5s ease;" 
+                                 onerror="this.src='<?= htmlspecialchars($homeDefaultImage) ?>'">
+                        </div>
+                        <div class="card-body p-4 position-relative d-flex flex-column">
+                            <div class="bg-gold text-primary-law position-absolute top-0 translate-middle-y px-3 py-1 fw-bold text-uppercase" style="font-size: 0.8rem;">
+                                <?= htmlspecialchars($post['category']) ?>
+                            </div>
+                            <div class="text-muted small mb-2 mt-2">
+                                <i class="far fa-calendar-alt me-2"></i> <?= date('M d, Y', strtotime($post['created_at'])) ?>
+                            </div>
+                            <h5 class="card-title fw-bold mb-3 text-primary-law">
+                                <?= htmlspecialchars($post['title']) ?>
+                            </h5>
+                            <p class="card-text text-muted mb-4 flex-grow-1">
+                                <?= htmlspecialchars(substr(strip_tags($post['content']), 0, 120)) ?>...
+                            </p>
+                            <span class="text-gold fw-bold read-more mt-auto d-inline-block">
+                                Read Article <i class="fas fa-arrow-right ms-1"></i>
+                            </span>
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
             <?php endforeach; ?>
         </div>

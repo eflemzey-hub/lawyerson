@@ -353,6 +353,33 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
   object-fit: cover;
 }
 
+/* Homepage Blog Cards */
+.home-blog-card {
+  cursor: pointer;
+}
+
+.home-blog-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.15) !important;
+}
+
+.home-blog-card:hover img {
+  transform: scale(1.05);
+}
+
+.home-blog-card .read-more {
+  transition: padding-left 0.3s ease;
+}
+
+.home-blog-card:hover .read-more {
+  padding-left: 8px;
+}
+
+.home-blog-card:hover .read-more i {
+  transform: translateX(4px);
+  transition: transform 0.3s ease;
+}
+
 /* Mobile Optimization */
 @media (max-width: 991px) {
   .navbar-law .nav-link {

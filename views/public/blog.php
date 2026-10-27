@@ -34,12 +34,27 @@ try {
                         <a href="index.php?page=blog" class="btn btn-outline-secondary rounded-0 btn-sm">Clear Search</a>
                     </div>
                 <?php else: ?>
+                    <?php
+                    // Define available categories
+                    $categories = [
+                        '' => 'All',
+                        'Corporate Law' => 'Corporate Law',
+                        'Family Law' => 'Family Law',
+                        'Real Estate' => 'Real Estate',
+                        'Criminal Defense' => 'Criminal Defense'
+                    ];
+                    ?>
                     <div class="d-flex justify-content-center flex-wrap gap-2">
-                        <a href="index.php?page=blog" class="btn btn-primary-law rounded-0 px-4">All</a>
-                        <a href="index.php?page=blog&category=Corporate+Law" class="btn btn-outline-primary-law rounded-0 px-4 bg-white">Corporate Law</a>
-                        <a href="index.php?page=blog&category=Family+Law" class="btn btn-outline-primary-law rounded-0 px-4 bg-white">Family Law</a>
-                        <a href="index.php?page=blog&category=Real+Estate" class="btn btn-outline-primary-law rounded-0 px-4 bg-white">Real Estate</a>
-                        <a href="index.php?page=blog&category=Criminal+Defense" class="btn btn-outline-primary-law rounded-0 px-4 bg-white">Criminal Defense</a>
+                        <?php foreach ($categories as $catValue => $catLabel): ?>
+                            <?php
+                            $isActive = ($categoryFilter === $catValue);
+                            $btnClass = $isActive ? 'btn btn-primary-law rounded-0 px-4' : 'btn btn-outline-primary-law rounded-0 px-4 bg-white';
+                            $url = $catValue === '' ? 'index.php?page=blog' : 'index.php?page=blog&category=' . urlencode($catValue);
+                            ?>
+                            <a href="<?= $url ?>" class="<?= $btnClass ?>">
+                                <?= htmlspecialchars($catLabel) ?>
+                            </a>
+                        <?php endforeach; ?>
                     </div>
                 <?php endif; ?>
             </div>

@@ -1,0 +1,16 @@
+Options -Indexes
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule ^(config|models|includes|migrations|views)/ - [F,L]
+</IfModule>
+
+<FilesMatch "\.(sql|md|env|ini|log|bak|config)$">
+    Require all denied
+</FilesMatch>
+
+# Block direct access to sensitive config files
+<Files "api_key.php">
+    Require all denied
+</Files>
+

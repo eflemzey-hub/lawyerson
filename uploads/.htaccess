@@ -1,0 +1,16 @@
+# Prevent directory browsing
+Options -Indexes -ExecCGI
+
+# Prevent execution of scripts and HTML files
+<FilesMatch "\.(php|php[3-8]|phtml|phar|pl|py|jsp|asp|htm|html|shtml|sh|cgi)$">
+    Require all denied
+</FilesMatch>
+
+# Remove handlers
+RemoveHandler .php .phtml .php3 .php4 .php5 .php7 .php8
+RemoveType .php .phtml .php3 .php4 .php5 .php7 .php8
+
+# Force MIME types for images to prevent MIME sniffing XSS
+<FilesMatch "\.(jpeg|jpg|png|gif|webp)$">
+    Header set X-Content-Type-Options "nosniff"
+</FilesMatch>

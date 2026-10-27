@@ -1,0 +1,56 @@
+# Environment Configuration
+.env
+.env.local
+.env.*.local
+
+# IDE and Editor Files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Dependencies
+node_modules/
+vendor/
+composer.lock
+package-lock.json
+
+# User Uploaded Files
+uploads/*
+!uploads/.htaccess
+!uploads/README.md
+
+# Logs and Temporary Files
+*.log
+error_log
+debug.log
+tmp/
+temp/
+cache/
+
+# Backup Files
+*.bak
+*.backup
+*.sql.gz
+*.sql.zip
+
+# Sensitive Configuration
+config/api_key.php
+config/database.php.local
+
+# Operating System Files
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# Build and Distribution
+dist/
+build/
+*.min.js
+*.min.css
+
+# Test Coverage
+coverage/
+.phpunit.result.cache

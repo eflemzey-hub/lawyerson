@@ -1,0 +1,393 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+:root {
+  /* Luxury Law Firm Color Palette */
+  --law-primary: #0B1B3D; /* Deep Navy */
+  --law-secondary: #D4AF37; /* Champagne Gold */
+  --law-accent: #C5A017; /* Darker Gold for hover */
+  --law-text: #333333; /* Charcoal */
+  --law-bg: #F8F9FA; /* Off-white */
+  --law-white: #FFFFFF;
+  
+  /* Typography */
+  --font-heading: 'Playfair Display', serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--law-text);
+  background-color: var(--law-bg);
+  line-height: 1.6;
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
+}
+
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
+}
+
+h1, h2, h3, h4, h5, h6, .navbar-brand {
+  font-family: var(--font-heading);
+  color: var(--law-primary);
+}
+
+/* Custom Utilities */
+.text-primary-law {
+  color: var(--law-primary) !important;
+}
+
+.text-gold {
+  color: var(--law-secondary) !important;
+}
+
+.bg-primary-law {
+  background-color: var(--law-primary) !important;
+}
+
+.bg-gold {
+  background-color: var(--law-secondary) !important;
+}
+
+/* Buttons */
+.btn-gold {
+  background-color: var(--law-secondary);
+  color: var(--law-primary);
+  border: 1px solid var(--law-secondary);
+  font-weight: 500;
+  padding: 10px 24px;
+  transition: all 0.3s ease;
+}
+
+.btn-gold:hover {
+  background-color: transparent;
+  color: var(--law-secondary);
+}
+
+.btn-outline-gold {
+  background-color: transparent;
+  color: var(--law-secondary);
+  border: 1px solid var(--law-secondary);
+  font-weight: 500;
+  padding: 10px 24px;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-gold:hover {
+  background-color: var(--law-secondary);
+  color: var(--law-primary);
+}
+
+/* Navbar overrides */
+.navbar-law {
+  background-color: var(--law-white);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.navbar-law .nav-link {
+  color: var(--law-primary);
+  font-weight: 500;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0 10px;
+  transition: color 0.3s ease;
+}
+
+.navbar-law .nav-link:hover, 
+.navbar-law .nav-link.active {
+  color: var(--law-secondary);
+}
+
+/* Sections */
+.section-padding {
+  padding: 80px 0;
+}
+
+/* Cards */
+.law-card {
+  border: none;
+  border-radius: 0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: var(--law-white);
+  border-top: 3px solid transparent;
+}
+
+.law-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(11, 27, 61, 0.1);
+  border-top: 3px solid var(--law-secondary);
+}
+
+.law-card .card-title {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+/* Footer */
+.law-footer {
+  background-color: var(--law-primary);
+  color: #a0aabf;
+  padding: 60px 0 20px;
+}
+
+.law-footer h5 {
+  color: var(--law-secondary);
+  font-family: var(--font-heading);
+  margin-bottom: 25px;
+}
+
+.law-footer a {
+  color: #a0aabf;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.law-footer a:hover {
+  color: var(--law-secondary);
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  margin-top: 40px;
+  padding-top: 20px;
+  font-size: 0.85rem;
+}
+
+/* Additions for Homepage Elements */
+.letter-spacing-1 {
+  letter-spacing: 1.5px;
+}
+
+.btn-primary-law {
+  background-color: var(--law-primary);
+  color: var(--law-white);
+  border: 1px solid var(--law-primary);
+  transition: all 0.3s ease;
+}
+
+.btn-primary-law:hover {
+  background-color: var(--law-white);
+  color: var(--law-primary);
+}
+
+.btn-outline-primary-law {
+  background-color: transparent;
+  color: var(--law-primary);
+  border: 1px solid var(--law-primary);
+  transition: all 0.3s ease;
+}
+
+.btn-outline-primary-law:hover {
+  background-color: var(--law-primary);
+  color: var(--law-white);
+}
+
+.read-more {
+  transition: all 0.3s ease;
+}
+
+.read-more:hover {
+  color: var(--law-accent) !important;
+  letter-spacing: 0.5px;
+}
+
+/* Advantage Box */
+.advantage-box {
+  transition: all 0.3s ease;
+}
+
+.advantage-box:hover {
+  border-color: var(--law-secondary) !important;
+  transform: translateY(-5px);
+}
+
+.transform-scale {
+  transform: scale(1.05);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .transform-scale {
+    transform: scale(1);
+  }
+}
+
+/* Team Profiles */
+.team-img-wrapper {
+  background: var(--law-primary);
+}
+
+.team-img-wrapper img {
+  transition: all 0.5s ease;
+  opacity: 0.9;
+}
+
+.team-card:hover .team-img-wrapper img {
+  transform: scale(1.1);
+  opacity: 0.6;
+}
+
+.team-social {
+  transform: translateY(100%);
+  transition: all 0.4s ease;
+  background: linear-gradient(transparent, rgba(11,27,61,0.9));
+}
+
+.team-card:hover .team-social {
+  transform: translateY(0);
+}
+
+/* Testimonials */
+.testimonial-card {
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+}
+
+.testimonial-card:hover {
+  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+  transform: translateY(-5px);
+}
+
+/* Blog Cards */
+.blog-card {
+  transition: all 0.3s ease;
+}
+
+.blog-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.1) !important;
+}
+
+.blog-card img {
+  height: 250px;
+  object-fit: cover;
+}
+
+/* Mobile Optimization */
+@media (max-width: 991px) {
+  .navbar-law .nav-link {
+    padding: 12px 0;
+    margin: 0;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+  }
+
+  .navbar-law .btn-gold {
+    margin-top: 15px;
+    width: 100%;
+    text-align: center;
+    display: block;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Typography */
+  .display-4 {
+    font-size: 2.2rem;
+  }
+  .display-5 {
+    font-size: 1.8rem;
+  }
+  .display-6 {
+    font-size: 1.5rem;
+  }
+
+  h1, h2 {
+    word-wrap: break-word;
+  }
+
+  /* Section Spacing */
+  .section-padding {
+    padding: 50px 0;
+  }
+
+  /* Forms */
+  .card-body.p-5 {
+    padding: 2rem !important;
+  }
+
+  /* Footer */
+  .law-footer {
+    text-align: center;
+  }
+  .law-footer .col-md-3, .law-footer .col-md-4 {
+    margin-bottom: 30px;
+  }
+
+  /* Team Profiles - Touch Devices */
+  .team-social {
+    transform: translateY(0);
+    background: linear-gradient(transparent, rgba(11,27,61,0.9));
+    padding-top: 40px;
+  }
+  .team-img-wrapper img {
+    opacity: 0.8;
+  }
+
+  /* Images and Media */
+  img, iframe, video {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Map iframe */
+  iframe {
+    max-width: 100%;
+    border: none;
+  }
+
+  /* Prevent horizontal scroll on all elements */
+  * {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Container fixes */
+  .container, .container-fluid {
+    padding-left: 15px;
+    padding-right: 15px;
+    max-width: 100%;
+  }
+
+  /* Row fixes */
+  .row {
+    margin-left: -15px;
+    margin-right: -15px;
+  }
+
+  /* Column fixes */
+  [class*="col-"] {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
+@media (max-width: 576px) {
+  /* Extra small devices */
+  .container, .container-fluid {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .row {
+    margin-left: -10px;
+    margin-right: -10px;
+  }
+
+  [class*="col-"] {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  /* Map height adjustment */
+  #map, iframe {
+    height: 300px !important;
+  }
+}

@@ -89,6 +89,7 @@ require_once 'models/Media.php';
 require_once 'models/Attorney.php';
 require_once 'models/Post.php';
 require_once 'models/Message.php';
+require_once 'models/Testimonial.php';
 
 $pdo_instance = $pdo ?? null;
 $settingModel = new Setting($pdo_instance);
@@ -96,6 +97,7 @@ $mediaModel = new Media($pdo_instance);
 $attorneyModel = new Attorney($pdo_instance);
 $postModel = new Post($pdo_instance);
 $messageModel = new Message($pdo_instance);
+$testimonialModel = new Testimonial($pdo_instance);
 
 // Site-wide settings (navbar, footer, page titles)
 $siteName = $settingModel->get('site_name', 'Lawyerson & Partners');

@@ -237,7 +237,7 @@
 </section>
 
 <!-- Testimonials -->
-<section class="section-padding bg-law-bg">
+<section class="section-padding bg-law-bg overflow-hidden">
     <div class="container">
         <div class="row mb-5 text-center">
             <div class="col-lg-6 mx-auto">
@@ -247,63 +247,223 @@
             </div>
         </div>
         
-        <div class="row g-4">
-            <div class="col-md-6 col-lg-4">
-                <div class="card testimonial-card border-0 p-4 h-100">
-                    <div class="card-body">
-                        <div class="text-gold mb-3 fs-5">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                        </div>
-                        <p class="fst-italic text-muted mb-4">"Lawyerson & Partners provided exceptional service during my corporate merger. Their attention to detail and strategic foresight saved us millions."</p>
-                        <div class="d-flex align-items-center">
-                            <div class="bg-primary-law text-white rounded-circle d-flex align-items-center justify-content-center fw-bold me-3" style="width: 50px; height: 50px;">RP</div>
-                            <div>
-                                <h6 class="mb-0 fw-bold">Robert Peterson</h6>
-                                <small class="text-muted">CEO, TechCorp</small>
+        <?php
+        $testimonials = [];
+        try {
+            if (isset($testimonialModel)) {
+                $testimonials = $testimonialModel->getAll(true);
+            }
+        } catch (Exception $e) {}
+        ?>
+        
+        <?php if (!empty($testimonials)): ?>
+        <!-- Swiper Carousel -->
+        <div class="position-relative">
+            <div class="swiper testimonials-swiper">
+                <div class="swiper-wrapper pb-5">
+                    <?php foreach ($testimonials as $testimonial): ?>
+                        <?php
+                        $initials = '';
+                        $nameParts = explode(' ', $testimonial['client_name']);
+                        if (count($nameParts) >= 2) {
+                            $initials = strtoupper(substr($nameParts[0], 0, 1) . substr($nameParts[1], 0, 1));
+                        } else {
+                            $initials = strtoupper(substr($testimonial['client_name'], 0, 2));
+                        }
+                        
+                        $companyInfo = $testimonial['client_company'] 
+                            ? htmlspecialchars($testimonial['client_title']) . ', ' . htmlspecialchars($testimonial['client_company'])
+                            : htmlspecialchars($testimonial['client_title'] ?? 'Private Client');
+                        ?>
+                        <div class="swiper-slide">
+                            <div class="card testimonial-card border-0 p-4 h-100 shadow-sm">
+                                <div class="card-body">
+                                    <!-- Practice Area Badge -->
+                                    <div class="mb-3">
+                                        <span class="badge bg-primary-law text-white px-3 py-1 rounded-pill small">
+                                            <?= htmlspecialchars($testimonial['practice_area']) ?>
+                                        </span>
+                                    </div>
+                                    
+                                    <!-- Star Rating -->
+                                    <div class="text-gold mb-3 fs-5">
+                                        <?php for ($i = 0; $i < $testimonial['rating']; $i++): ?>
+                                            <i class="fas fa-star"></i>
+                                        <?php endfor; ?>
+                                    </div>
+                                    
+                                    <!-- Review Text -->
+                                    <p class="fst-italic text-muted mb-4" style="line-height: 1.8;">
+                                        "<?= htmlspecialchars($testimonial['review_text']) ?>"
+                                    </p>
+                                    
+                                    <!-- Client Info -->
+                                    <div class="d-flex align-items-center mt-auto">
+                                        <div class="bg-primary-law text-white rounded-circle d-flex align-items-center justify-content-center fw-bold me-3" style="width: 50px; height: 50px; flex-shrink: 0;">
+                                            <?= $initials ?>
+                                        </div>
+                                        <div>
+                                            <h6 class="mb-0 fw-bold text-primary-law"><?= htmlspecialchars($testimonial['client_name']) ?></h6>
+                                            <small class="text-muted"><?= $companyInfo ?></small>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    <?php endforeach; ?>
                 </div>
-            </div>
-            
-            <div class="col-md-6 col-lg-4">
-                <div class="card testimonial-card border-0 p-4 h-100">
-                    <div class="card-body">
-                        <div class="text-gold mb-3 fs-5">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                        </div>
-                        <p class="fst-italic text-muted mb-4">"I was facing a highly complex real estate dispute, and Sarah Jenkins handled it brilliantly. She kept me informed every step of the way."</p>
-                        <div class="d-flex align-items-center">
-                            <div class="bg-primary-law text-white rounded-circle d-flex align-items-center justify-content-center fw-bold me-3" style="width: 50px; height: 50px;">AM</div>
-                            <div>
-                                <h6 class="mb-0 fw-bold">Amanda Miller</h6>
-                                <small class="text-muted">Real Estate Investor</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col-md-6 col-lg-4">
-                <div class="card testimonial-card border-0 p-4 h-100">
-                    <div class="card-body">
-                        <div class="text-gold mb-3 fs-5">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                        </div>
-                        <p class="fst-italic text-muted mb-4">"The compassion and professionalism shown by the family law team made a very difficult time in my life manageable. Highly recommended."</p>
-                        <div class="d-flex align-items-center">
-                            <div class="bg-primary-law text-white rounded-circle d-flex align-items-center justify-content-center fw-bold me-3" style="width: 50px; height: 50px;">DB</div>
-                            <div>
-                                <h6 class="mb-0 fw-bold">David Brooks</h6>
-                                <small class="text-muted">Private Client</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
+                <!-- Navigation Buttons -->
+                <div class="swiper-button-next testimonial-nav-next"></div>
+                <div class="swiper-button-prev testimonial-nav-prev"></div>
+                
+                <!-- Pagination -->
+                <div class="swiper-pagination testimonial-pagination"></div>
             </div>
         </div>
+        <?php else: ?>
+        <div class="text-center py-5">
+            <p class="text-muted">No testimonials available at this time.</p>
+        </div>
+        <?php endif; ?>
     </div>
 </section>
+
+<!-- Swiper CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<style>
+    .testimonials-swiper {
+        padding: 20px 60px 60px;
+    }
+    
+    .testimonials-swiper .swiper-slide {
+        height: auto;
+    }
+    
+    .testimonial-card {
+        height: 100%;
+        transition: all 0.4s ease;
+        background: white;
+        border-radius: 8px;
+    }
+    
+    .testimonial-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12) !important;
+    }
+    
+    /* Custom Navigation Buttons */
+    .testimonial-nav-next,
+    .testimonial-nav-prev {
+        width: 45px;
+        height: 45px;
+        background: var(--law-primary);
+        border-radius: 50%;
+        color: white;
+        transition: all 0.3s ease;
+    }
+    
+    .testimonial-nav-next:after,
+    .testimonial-nav-prev:after {
+        font-size: 18px;
+        font-weight: bold;
+    }
+    
+    .testimonial-nav-next:hover,
+    .testimonial-nav-prev:hover {
+        background: var(--law-secondary);
+        color: var(--law-primary);
+    }
+    
+    .testimonial-nav-next.swiper-button-disabled,
+    .testimonial-nav-prev.swiper-button-disabled {
+        opacity: 0.35;
+        cursor: not-allowed;
+    }
+    
+    /* Custom Pagination */
+    .testimonial-pagination {
+        bottom: 0 !important;
+    }
+    
+    .testimonial-pagination .swiper-pagination-bullet {
+        width: 12px;
+        height: 12px;
+        background: var(--law-primary);
+        opacity: 0.3;
+        transition: all 0.3s ease;
+    }
+    
+    .testimonial-pagination .swiper-pagination-bullet-active {
+        background: var(--law-secondary);
+        opacity: 1;
+        width: 30px;
+        border-radius: 6px;
+    }
+    
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+        .testimonials-swiper {
+            padding: 10px 10px 50px;
+        }
+        
+        .testimonial-nav-next,
+        .testimonial-nav-prev {
+            width: 35px;
+            height: 35px;
+        }
+        
+        .testimonial-nav-next:after,
+        .testimonial-nav-prev:after {
+            font-size: 14px;
+        }
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const testimonialsSwiper = new Swiper('.testimonials-swiper', {
+            slidesPerView: 1,
+            spaceBetween: 30,
+            loop: true,
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true
+            },
+            speed: 800,
+            effect: 'slide',
+            grabCursor: true,
+            pagination: {
+                el: '.testimonial-pagination',
+                clickable: true,
+                dynamicBullets: true
+            },
+            navigation: {
+                nextEl: '.testimonial-nav-next',
+                prevEl: '.testimonial-nav-prev',
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 1,
+                    spaceBetween: 20
+                },
+                768: {
+                    slidesPerView: 2,
+                    spaceBetween: 30
+                },
+                1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 30
+                }
+            }
+        });
+    });
+</script>
 
 <!-- Call to Action Section -->
 <section class="py-5 bg-gold text-primary-law text-center">
